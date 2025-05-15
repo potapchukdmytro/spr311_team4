@@ -14,10 +14,16 @@ namespace team4.DAL.Entities
     public class BaseEntity<T> : IBaseEntity<T>
     {
         [Key]
-        public T Id { get; set; } = default!;
+        virtual public T Id { get; set; } = default!;
+        [Required]
+        [MaxLength(255)]
         public required string Name { get; set; }
+        [Required]
+        [MaxLength(255)]
         public string NormalizedName { get; set; } = string.Empty;
+        [MaxLength]
         public string Description { get; set; } = string.Empty;
+        [MaxLength(255)]
         public string Image { get; set; } = string.Empty;
     }
 }

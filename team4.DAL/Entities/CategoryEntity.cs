@@ -1,18 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace team4.DAL.Entities
+﻿namespace team4.DAL.Entities
 {
-    public class CategoryEntity
+    public class CategoryEntity : BaseEntity<string>
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        [Required]
-        [MaxLength(255)]
-        public required string Name { get; set; }
-        [Required]
-        [MaxLength(255)]
-        public string? NormalizedName { get; set; }
-        [MaxLength]
-        public string? Description { get; set; }
+        override public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public ICollection<ProductEntity> Products { get; set; } = [];
     }
