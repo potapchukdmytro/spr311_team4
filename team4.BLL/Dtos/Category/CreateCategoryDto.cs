@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace team4.BLL.Dtos.Category
 {
     public class CreateCategoryDto
     {
-        public required string Name { get; set; }
-        public string? Description { get; set; }
-        public IFormFile? Image { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        public string Name { get; set; } = null!;
     }
 }
