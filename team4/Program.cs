@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using team4.DAL;
 using Serilog;
 using team4.Middleware;
+using team4.BLL.Services;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddControllers();
 
