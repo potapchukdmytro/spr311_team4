@@ -1,4 +1,5 @@
 ﻿using team4.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace team4.DAL.Repositories.Product
 {
