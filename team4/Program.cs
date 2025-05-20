@@ -1,7 +1,9 @@
-
+using Microsoft.EntityFrameworkCore;
+using team4.DAL;
 using Serilog;
 using team4.Middleware;
 using team4.BLL.Services;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,15 @@ builder.Host.UseSerilog();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.MigrationsAssembly("team4")
+    ));
+
+
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

@@ -14,5 +14,7 @@ namespace team4.DAL.Entities
         [ForeignKey("Category")]
         public required string CategoryId { get; set; }
         public CategoryEntity? Category { get; set; }
+        public ICollection<string> Images { get; set; } = new List<string>();
+
     }
 }
