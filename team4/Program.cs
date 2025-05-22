@@ -3,6 +3,11 @@ using team4.DAL;
 using Serilog;
 using team4.Middleware;
 using team4.BLL.Services;
+using team4.BLL.Services.Product;
+using team4.BLL.Services.Category;
+using team4.DAL.Repositories.Product;
+using team4.DAL.Repositories.Category;
+
 
 
 
@@ -29,6 +34,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         sqlOptions => sqlOptions.MigrationsAssembly("team4")
     ));
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
