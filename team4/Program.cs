@@ -3,13 +3,11 @@ using team4.DAL;
 using Serilog;
 using team4.Middleware;
 using team4.BLL.Services;
-using team4.BLL.Services.Product;
-using team4.BLL.Services.Category;
 using team4.DAL.Repositories.Product;
-using team4.DAL.Repositories.Category;
 using AutoMapper;
 using team4.BLL.Mapping;
 using Microsoft.Extensions.FileProviders;
+using team4.BLL.Services.ProductService;
 
 
 
