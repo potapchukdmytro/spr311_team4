@@ -3,6 +3,10 @@ using team4.DAL;
 using Serilog;
 using team4.Middleware;
 using team4.BLL.Services;
+using team4.BLL.Services.Product;
+using team4.BLL.Services.Category;
+using team4.DAL.Repositories.Product;
+using team4.DAL.Repositories.Category;
 using AutoMapper;
 using team4.BLL.Mapping;
 using Microsoft.Extensions.FileProviders;
@@ -20,7 +24,7 @@ internal class Program
         //Serilog
         Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()
-            .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Hour) // логування в файл що години
+            .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Hour) // Г«Г®ГЈГіГўГ Г­Г­Гї Гў ГґГ Г©Г« Г№Г® ГЈГ®Г¤ГЁГ­ГЁ
             .CreateLogger();
 
         //AutoMapper
@@ -34,6 +38,11 @@ internal class Program
 
         builder.Services.AddControllers();
 
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
+        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+        builder.Services.AddScoped<IProductService, ProductService>();
+        builder.Services.AddScoped<ICategoryService, CategoryService>();
+      
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection"),
