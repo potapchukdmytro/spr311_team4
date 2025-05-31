@@ -25,10 +25,10 @@ namespace team4.DAL.Repositories.Product
         }
 
         public IEnumerable<ProductEntity> GetAll()
-            =>  _context.Products;
+            =>  _context.Products.Include(p => p.Category);
 
         public async Task<ProductEntity?> GetByIdAsync(string id)
-            => await _context.Products.Include(p => p.Images).FirstOrDefaultAsync(p => p.Id == id);
+            => await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
 
         public async Task<bool> UpdateAsync(ProductEntity entity)
         {
